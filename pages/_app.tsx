@@ -1,8 +1,13 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../styles/portfolio.css";
+import type { AppProps } from "next/app";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap.js");
+  });
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;
