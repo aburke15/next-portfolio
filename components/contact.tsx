@@ -30,11 +30,7 @@ const Contact: FunctionComponent = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="contact-icon"
-              src={linkedIn}
-              alt="LinkedIn logo"
-            />
+            <Image src={linkedIn} alt="LinkedIn logo" height={50} width={50} />
           </a>
           <a
             className="contact-icon-space"
@@ -42,7 +38,7 @@ const Contact: FunctionComponent = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="contact-icon" src={github} alt="GitHub logo" />
+            <Image src={github} alt="GitHub logo" height={50} width={50} />
           </a>
           <a
             className="contact-icon-space"
@@ -50,7 +46,7 @@ const Contact: FunctionComponent = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image className="contact-icon" src={youtube} alt="YouTube logo" />
+            <Image src={youtube} alt="YouTube logo" height={50} width={50} />
           </a>
         </div>
       </div>

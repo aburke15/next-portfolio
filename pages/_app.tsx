@@ -1,4 +1,5 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/portfolio.css";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
