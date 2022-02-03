@@ -1,12 +1,13 @@
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/portfolio.css";
+
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    import("bootstrap/dist/js/bootstrap.js");
+    import("bootstrap/dist/js/bootstrap.min.js" as any);
   });
   return <Component {...pageProps} />;
 }
