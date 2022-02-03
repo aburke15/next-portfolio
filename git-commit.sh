@@ -6,4 +6,4 @@ git commit -m "$message"
 echo "enter branch name:"
 read branch
 git push -u origin $branch
-echo "committed to branch: $branch"
+echo "changes committed to branch: $branch"
