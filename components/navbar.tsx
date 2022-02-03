@@ -1,18 +1,19 @@
 import React, { FunctionComponent } from "react";
-import src from "../images/favicon.png";
+import favi from "../public/images/favicon.png";
+import Image from "next/image";
 
 const Navbar: FunctionComponent = () => {
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#title">
-          {/* <img
+          <Image
             className="nav-img"
-            src={src}
+            src={favi}
             alt="navbar icon"
-            width={30}
-            height={25}
-          /> */}
+            width={35}
+            height={35}
+          />
         </a>
         <button
           className="navbar-toggler"
