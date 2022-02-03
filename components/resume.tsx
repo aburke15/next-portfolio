@@ -9,11 +9,11 @@ const Resume: FunctionComponent = () => {
           <p className="b-underline"></p>
         </div>
         <div className="row global-margin justify-content-center">
-          <object
+          <embed
             className="col-md-9"
             style={{ height: "90vh" }}
             type="application/pdf"
-            data="/BurkeAndre.pdf"
+            src="/BurkeAndre.pdf"
             aria-label="resume pdf"
           />
         </div>
