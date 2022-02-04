@@ -61,19 +61,29 @@ const defaultState: ILocalState = {
   isLoading: false,
 };
 
+export const getStaticProps = async () => {
+  const url = "https://portfolio-be.azurewebsites.net/api/GitHub/repos";
+  const res = await fetch(url);
+  const data: Array<GitHubProject> = await res.json();
+
+  return {
+    props: { projects: data },
+    revalidate: 120, // In seconds
+  };
+};
+
 const Projects: FunctionComponent = () => {
   const [localState, setLocalState] = useState(defaultState);
 
   useEffect(() => {
     setLocalState((s) => ({ ...s, isLoading: true }));
-    const url = "https://portfolio-be.azurewebsites.net/api/GitHub/repos";
-    fetch(url, { method: "GET" })
-      .then((res) => res.json())
-      .then((data) => {
-        setTimeout(() => {
-          // add table pages
-          setLocalState((s) => ({ ...s, projects: data, isLoading: false }));
-        }, 500);
+    getStaticProps()
+      .then((staticProps) => {
+        setLocalState((s) => ({
+          ...s,
+          projects: staticProps.props.projects,
+          isLoading: false,
+        }));
       })
       .catch((error) => {
         console.log(error);
