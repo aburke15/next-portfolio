@@ -1,6 +1,6 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
-import DataTable from "react-data-table-component";
-import Loading from "./loading";
+import React, { useState, useEffect, FunctionComponent } from 'react';
+import DataTable from 'react-data-table-component';
+import Loading from './loading';
 
 type GitHubProject = {
   name: string;
@@ -12,39 +12,33 @@ type GitHubProject = {
 
 const columns = [
   {
-    name: "Name",
+    name: 'Name',
     selector: (row: GitHubProject) => row.name,
     sortable: true,
   },
   {
-    name: "Description",
+    name: 'Description',
     selector: (row: GitHubProject) => row.description,
     sortable: false,
     wrap: true,
   },
   {
-    name: "Project Link",
+    name: 'Project Link',
     selector: (row: GitHubProject) => row.htmlUrl,
     sortable: false,
     cell: (row: GitHubProject) => (
-      <a
-        className="btn btn-secondary"
-        target="_blank"
-        rel="noopener noreferrer"
-        href={row.htmlUrl}
-      >
+      <a className="btn btn-secondary" target="_blank" rel="noopener noreferrer" href={row.htmlUrl}>
         Go to project
       </a>
     ),
   },
   {
-    name: "Created At",
-    selector: (row: GitHubProject) =>
-      new Date(row.createdAt).toLocaleDateString(),
+    name: 'Created At',
+    selector: (row: GitHubProject) => new Date(row.createdAt).toLocaleDateString(),
     sortable: false,
   },
   {
-    name: "Language",
+    name: 'Language',
     selector: (row: GitHubProject) => row.language,
     sortable: true,
     right: true,
@@ -62,7 +56,7 @@ const defaultState: ILocalState = {
 };
 
 export const getStaticProps = async () => {
-  const url = "https://portfolio-be.azurewebsites.net/api/GitHub/repos";
+  const url = 'https://22fo0z0fsi.execute-api.us-west-2.amazonaws.com/prod/';
   const res = await fetch(url);
   const data: Array<GitHubProject> = await res.json();
 
@@ -99,15 +93,7 @@ const Projects: FunctionComponent = () => {
           <p className="b-underline"></p>
         </div>
         <div className="row global-margin">
-          {localState.isLoading ? (
-            <Loading />
-          ) : (
-            <DataTable
-              responsive
-              columns={columns}
-              data={localState.projects}
-            />
-          )}
+          {localState.isLoading ? <Loading /> : <DataTable responsive columns={columns} data={localState.projects} />}
         </div>
       </div>
     </div>
