@@ -56,7 +56,7 @@ const defaultState: ILocalState = {
 };
 
 export const getStaticProps = async () => {
-  const url = 'https://22fo0z0fsi.execute-api.us-west-2.amazonaws.com/prod/';
+  const url = 'https://gjvbkld8zh.execute-api.us-west-2.amazonaws.com/prod/';
   const res = await fetch(url);
   const data: Array<GitHubProject> = await res.json();
 
