@@ -1,13 +1,30 @@
-import type { NextPage } from "next";
-import Bio from "../components/bio";
-import Contact from "../components/contact";
-import Navbar from "../components/navbar";
-import Projects from "../components/projects";
-import Resume from "../components/resume";
-import Skills from "../components/skills";
-import Title from "../components/title";
+import type { GetServerSidePropsContext, NextPage } from 'next';
+import Bio from './bio';
+import Contact from './contact';
+import Navbar from './navbar';
+import Projects, { GitHubProject, ProjectPageProps } from './projects';
+import Resume from './resume';
+import Skills from './skills';
+import Title from './title';
 
-const Home: NextPage = () => {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const headers: Headers = new Headers();
+  let origin = process.env.ORIGIN as string;
+
+  headers.append('Origin', origin);
+
+  const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
+  const res = await fetch(url, { headers });
+  const data: GitHubProject[] = await res.json();
+
+  return {
+    props: {
+      projects: data,
+    },
+  };
+}
+
+const Home: NextPage<ProjectPageProps> = ({ projects }) => {
   return (
     <div className="portfolio-font">
       <Navbar />
@@ -15,7 +32,7 @@ const Home: NextPage = () => {
       <Bio />
       <Skills />
       <Resume />
-      <Projects />
+      <Projects projects={projects} />
       <Contact />
     </div>
   );
