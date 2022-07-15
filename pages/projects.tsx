@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext, NextPage } from 'next';
+import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, NextPage } from 'next';
 import DataTable from 'react-data-table-component';
 import Loading from './loading';
 
@@ -65,15 +65,17 @@ const Projects: NextPage<ProjectPageProps> = ({ projects }) => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getServerSideProps({ res }: GetServerSidePropsContext) {
+  res.setHeader('Cache-Control', 'public, s-maxage=1800, stale-while-revalidate=3600, stale-if-error=3600');
+
   const headers: Headers = new Headers();
   let origin = process.env.ORIGIN as string;
 
   headers.append('Origin', origin);
 
   const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
-  const res = await fetch(url);
-  const data: GitHubProject[] = await res.json();
+  const response = await fetch(url, { headers });
+  const data: GitHubProject[] = await response.json();
 
   return {
     props: {
