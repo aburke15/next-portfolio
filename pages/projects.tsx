@@ -67,8 +67,9 @@ const Projects: NextPage<ProjectPageProps> = ({ projects }) => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const headers: Headers = new Headers();
+  let origin = process.env.ORIGIN as string;
 
-  headers.append('Origin', 'http://localhost:3000');
+  headers.append('Origin', origin);
 
   const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
   const res = await fetch(url);
