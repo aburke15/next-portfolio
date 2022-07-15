@@ -1,8 +1,8 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
+import { GetServerSidePropsContext, NextPage } from 'next';
 import DataTable from 'react-data-table-component';
 import Loading from './loading';
 
-type GitHubProject = {
+export type GitHubProject = {
   name: string;
   createdAt: string;
   description: string;
@@ -45,46 +45,11 @@ const columns = [
   },
 ];
 
-interface ILocalState {
-  projects: Array<GitHubProject>;
-  isLoading: boolean;
+export interface ProjectPageProps {
+  projects: GitHubProject[];
 }
 
-const defaultState: ILocalState = {
-  projects: [],
-  isLoading: false,
-};
-
-export const getStaticProps = async () => {
-  const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
-  const res = await fetch(url);
-  const data: Array<GitHubProject> = await res.json();
-
-  return {
-    props: { projects: data },
-    revalidate: 259200, // In seconds, 3 days
-  };
-};
-
-const Projects: FunctionComponent = () => {
-  const [localState, setLocalState] = useState(defaultState);
-
-  useEffect(() => {
-    setLocalState((s) => ({ ...s, isLoading: true }));
-    getStaticProps()
-      .then((staticProps) => {
-        setLocalState((s) => ({
-          ...s,
-          projects: staticProps.props.projects,
-          isLoading: false,
-        }));
-      })
-      .catch((error) => {
-        console.log(error);
-        setLocalState((s) => ({ ...s, isLoading: false }));
-      });
-  }, []);
-
+const Projects: NextPage<ProjectPageProps> = ({ projects }) => {
   return (
     <div id="projects" className="projects-section global-padding">
       <div className="container">
@@ -93,11 +58,28 @@ const Projects: FunctionComponent = () => {
           <p className="b-underline"></p>
         </div>
         <div className="row global-margin">
-          {localState.isLoading ? <Loading /> : <DataTable responsive columns={columns} data={localState.projects} />}
+          {!projects ? <Loading /> : <DataTable responsive columns={columns} data={projects} />}
         </div>
       </div>
     </div>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const headers: Headers = new Headers();
+  let origin = process.env.ORIGIN as string;
+
+  headers.append('Origin', origin);
+
+  const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
+  const res = await fetch(url);
+  const data: GitHubProject[] = await res.json();
+
+  return {
+    props: {
+      projects: data,
+    },
+  };
+}
 
 export default Projects;
