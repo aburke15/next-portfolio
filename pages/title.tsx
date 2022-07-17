@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from "react";
+import { NextPage } from 'next';
 
-const Title: FunctionComponent = () => {
+const Title: NextPage = () => {
   return (
     <div id="title" className="title-section parallax">
       <div className="container">

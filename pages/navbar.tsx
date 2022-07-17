@@ -1,19 +1,13 @@
-import React, { FunctionComponent } from "react";
-import favi from "../public/images/favicon.png";
-import Image from "next/image";
+import favi from '../public/images/favicon.png';
+import Image from 'next/image';
+import { NextPage } from 'next';
 
-const Navbar: FunctionComponent = () => {
+const Navbar: NextPage = () => {
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#title">
-          <Image
-            className="nav-img"
-            src={favi}
-            alt="navbar icon"
-            width={35}
-            height={35}
-          />
+          <Image className="nav-img" src={favi} alt="navbar icon" width={35} height={35} />
         </a>
         <button
           className="navbar-toggler"
