@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from "react";
-import src from "../public/images/me.png";
-import Image from "next/image";
+import src from '../public/images/me.png';
+import Image from 'next/image';
+import { NextPage } from 'next';
 
-const Bio: FunctionComponent = () => {
+const Bio: NextPage = () => {
   return (
     <div id="about" className="bio-section global-padding">
       <div className="container text-center">
@@ -12,25 +12,16 @@ const Bio: FunctionComponent = () => {
         </div>
         <div className="global-margin">
           <div className="row justify-content-center">
-            <Image
-              className="img-responsive bio-pic"
-              src={src}
-              alt={"this is Andre Burke"}
-              height={450}
-              width={450}
-            />
+            <Image className="img-responsive bio-pic" src={src} alt={'this is Andre Burke'} height={450} width={450} />
           </div>
           <div className="row justify-content-center mt-3">
             <p className="col-md-8">
-              I am a die hard tech enthusiast with a passion for learning. I
-              have worked in the tech industry for over 5 years and have a solid
-              background in software development. Although I have experience in
-              both front and back end development, I am currently specialized in
-              back end development. My goal is to build top quality software
-              that is easy to use and easy to maintain. I hope to accomplish
-              this by keeping up with tested architecture/development practices
-              and the latest technologies. Please visit my links below to see my
-              work and social profiles. I would love to connect with you!
+              I am a die hard tech enthusiast with a passion for learning. I have worked in the tech industry for over 5
+              years and have a solid background in software development. Although I have experience in both front and
+              back end development, I am currently specialized in back end development. My goal is to build top quality
+              software that is easy to use and easy to maintain. I hope to accomplish this by keeping up with tested
+              architecture/development practices and the latest technologies. Please visit my links below to see my work
+              and social profiles. I would love to connect with you!
             </p>
           </div>
         </div>

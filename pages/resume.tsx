@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from "react";
+import { NextPage } from 'next';
 
-const Resume: FunctionComponent = () => {
+const Resume: NextPage = () => {
   return (
     <div id="resume" className="resume-section global-padding">
       <div className="container text-center">
@@ -11,7 +11,7 @@ const Resume: FunctionComponent = () => {
         <div className="row global-margin justify-content-center">
           <embed
             className="col-md-9"
-            style={{ height: "90vh" }}
+            style={{ height: '90vh' }}
             type="application/pdf"
             src="/BurkeAndre.pdf"
             aria-label="resume pdf"
