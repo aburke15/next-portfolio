@@ -2,7 +2,7 @@ import type { GetServerSidePropsContext, NextPage, NextApiRequest, NextApiRespon
 import Bio from './bio';
 import Contact from './contact';
 import Navbar from './navbar';
-import Projects, { GitHubProject, ProjectPageProps } from './projects';
+import Projects, { apiUrl, GitHubProject, ProjectPageProps } from './projects';
 import Resume from './resume';
 import Skills from './skills';
 import Title from './title';
@@ -15,8 +15,7 @@ export async function getServerSideProps({ res }: GetServerSidePropsContext) {
 
   headers.append('Origin', origin);
 
-  const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
-  const response = await fetch(url, { headers });
+  const response = await fetch(apiUrl, { headers });
   const data: GitHubProject[] = await response.json();
 
   return {

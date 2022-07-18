@@ -2,6 +2,8 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, NextPage } 
 import DataTable from 'react-data-table-component';
 import Loading from './loading';
 
+export const apiUrl = 'https://46iyjtsk90.execute-api.us-west-2.amazonaws.com/prod/';
+
 export type GitHubProject = {
   name: string;
   createdAt: string;
@@ -73,8 +75,7 @@ export async function getServerSideProps({ res }: GetServerSidePropsContext) {
 
   headers.append('Origin', origin);
 
-  const url = 'https://84z5r9anq8.execute-api.us-west-2.amazonaws.com/prod/';
-  const response = await fetch(url, { headers });
+  const response = await fetch(apiUrl, { headers });
   const data: GitHubProject[] = await response.json();
 
   return {
