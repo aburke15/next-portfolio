@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, NextPage } 
 import DataTable from 'react-data-table-component';
 import Loading from './loading';
 
-export const apiUrl = 'https://46iyjtsk90.execute-api.us-west-2.amazonaws.com/prod/';
+export const apiUrl = 'https://46iyjtsk90.execute-api.us-west-2.amazonaws.com/prod/projects';
 
 export type GitHubProject = {
   name: string;
