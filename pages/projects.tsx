@@ -2,15 +2,15 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse, NextPage } 
 import DataTable from 'react-data-table-component';
 import Loading from './loading';
 
-export const apiUrl = 'https://46iyjtsk90.execute-api.us-west-2.amazonaws.com/prod/projects';
+export const apiUrl = 'https://proj.aburke.tech/prod/projects';
 
-export type GitHubProject = {
+export interface GitHubProject {
   name: string;
   createdAt: string;
   description: string;
   htmlUrl: string;
   language: string;
-};
+}
 
 const columns = [
   {
