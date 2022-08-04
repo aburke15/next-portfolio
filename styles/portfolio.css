@@ -74,7 +74,7 @@
   padding-top: 250px;
 }
 .title {
-  font-size: 74px;
+  font-size: 75px;
   font-weight: 600;
 }
 .sub-title {
@@ -82,8 +82,12 @@
   font-weight: 600;
 }
 .title-color-font {
-  color: white;
+  color: gainsboro;
   font-family: Cinzel-Regular;
+}
+.title-backdrop {
+  background-color: #000000;
+  opacity: 0.97;
 }
 /* ************************* */
 
