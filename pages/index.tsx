@@ -1,4 +1,5 @@
 import type { GetServerSidePropsContext, NextPage, NextApiRequest, NextApiResponse } from 'next';
+import { getMockProjects } from './api/proj';
 import Bio from './bio';
 import Contact from './contact';
 import Navbar from './navbar';
@@ -15,14 +16,26 @@ export async function getServerSideProps({ res }: GetServerSidePropsContext) {
 
   headers.append('Origin', origin);
 
-  const response = await fetch(apiUrl, { headers });
-  const data: GitHubProject[] = await response.json();
+  try {
+    const response = await fetch(apiUrl, { headers });
+    const data: GitHubProject[] = await response.json();
 
-  return {
-    props: {
-      projects: data,
-    },
-  };
+    return {
+      props: {
+        projects: data,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+
+    const spoofedData: GitHubProject[] = getMockProjects();
+
+    return {
+      props: {
+        projects: spoofedData,
+      },
+    };
+  }
 }
 
 const Home: NextPage<ProjectPageProps> = ({ projects }) => {
